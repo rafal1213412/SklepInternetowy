@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import Towar
 
-# Create your views here.
+def sklep_home(request):
+    produkty = Towar.objects.all()
+    return render(request, "home.html", {"produkty": produkty})

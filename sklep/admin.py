@@ -20,7 +20,6 @@ from .models import (
     StatusReklamacji,
     Reklamacja,
 )
-
 MODELE = [
     Klient,
     Konto,
@@ -32,7 +31,7 @@ MODELE = [
     Kategoria,
     Towar,
     Magazyn,
-    Zamowienie,
+  #  Zamowienie,
     PozycjaZamowienia,
     StatusPlatnosci,
     Platnosc,

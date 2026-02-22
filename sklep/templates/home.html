@@ -1,0 +1,87 @@
+<h1>Witamy w sklepie!</h1>
+
+{% extends "base.html" %}
+
+{% block title %}Sklep internetowy{% endblock %}
+
+{% block content %}
+
+<!-- HERO BANER -->
+<div class="p-5 mb-4 bg-primary text-white rounded-3">
+    <div class="container py-5">
+        <h1 class="display-5 fw-bold">Najlepsze okazje na smartwatche</h1>
+        <p class="col-md-8 fs-4">SMART WEARABLE — do 80% taniej!</p>
+        <a class="btn btn-light btn-lg" href="#">Zobacz ofertę</a>
+    </div>
+</div>
+
+<!-- PROMOCJE -->
+<h2 class="mb-4">🔥 Najlepsze promocje</h2>
+<div class="row">
+    {% for p in produkty %}
+    <div class="col-md-3">
+        <div class="card mb-4 shadow-sm">
+            <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="produkt">
+            <div class="card-body">
+                <h5 class="card-title">{{ p.nazwa }}</h5>
+                <p class="card-text text-danger fw-bold">{{ p.cena_jednostkowa }} zł</p>
+                <a href="#" class="btn btn-primary w-100">Zobacz</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- KATEGORIE -->
+<h2 class="mt-5 mb-4">🛍️ Kategorie</h2>
+<div class="row text-center">
+    <div class="col-4 col-md-2 mb-3">
+        <div class="p-3 border rounded">📱<br>Telefony</div>
+    </div>
+    <div class="col-4 col-md-2 mb-3">
+        <div class="p-3 border rounded">💄<br>Kosmetyki</div>
+    </div>
+    <div class="col-4 col-md-2 mb-3">
+        <div class="p-3 border rounded">💻<br>Elektronika</div>
+    </div>
+    <div class="col-4 col-md-2 mb-3">
+        <div class="p-3 border rounded">🛋️<br>Meble</div>
+    </div>
+    <div class="col-4 col-md-2 mb-3">
+        <div class="p-3 border rounded">⌚<br>Zegarki</div>
+    </div>
+    <div class="col-4 col-md-2 mb-3">
+        <div class="p-3 border rounded">🏠<br>Dom</div>
+    </div>
+</div>
+
+<!-- MARKI -->
+<h2 class="mt-5 mb-4">⭐ Najlepsze marki</h2>
+<div class="row">
+    <div class="col-md-3 mb-3">
+        <div class="p-4 bg-light border rounded text-center">
+            <h4>iPhone</h4>
+            <p>Do 80% taniej</p>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="p-4 bg-light border rounded text-center">
+            <h4>realme</h4>
+            <p>Do 80% taniej</p>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="p-4 bg-light border rounded text-center">
+            <h4>Samsung</h4>
+            <p>Do 80% taniej</p>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="p-4 bg-light border rounded text-center">
+            <h4>Xiaomi</h4>
+            <p>Do 80% taniej</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
