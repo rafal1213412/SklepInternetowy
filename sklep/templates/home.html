@@ -1,87 +1,179 @@
-<h1>Witamy w sklepie!</h1>
-
 {% extends "base.html" %}
-
-{% block title %}Sklep internetowy{% endblock %}
 
 {% block content %}
 
-<!-- HERO BANER -->
-<div class="p-5 mb-4 bg-primary text-white rounded-3">
-    <div class="container py-5">
-        <h1 class="display-5 fw-bold">Najlepsze okazje na smartwatche</h1>
-        <p class="col-md-8 fs-4">SMART WEARABLE — do 80% taniej!</p>
-        <a class="btn btn-light btn-lg" href="#">Zobacz ofertę</a>
+<style>
+    body {
+        background-color: #0d0d0d;
+        color: #e6e6e6;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h1, h2 {
+        color: #d4af37;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+
+    .hero-box {
+        background: linear-gradient(135deg, #1a1a1a, #000);
+        border: 1px solid #2a2a2a;
+        box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+    }
+
+    .product-card {
+        background: #111;
+        border: 1px solid #2a2a2a;
+        transition: 0.3s;
+    }
+
+    .product-card:hover {
+        border-color: #d4af37;
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        transform: translateY(-5px);
+    }
+
+    .category-box {
+        background: #111;
+        border: 1px solid #2a2a2a;
+        padding: 25px;
+        border-radius: 12px;
+        transition: 0.3s;
+    }
+
+    .category-box:hover {
+        border-color: #d4af37;
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        transform: translateY(-5px);
+    }
+
+    .brand-box {
+        background: #111;
+        border: 1px solid #2a2a2a;
+        padding: 30px;
+        border-radius: 12px;
+        transition: 0.3s;
+    }
+
+    .brand-box:hover {
+        border-color: #d4af37;
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+        transform: translateY(-5px);
+    }
+
+    .category-box img {
+        border: 2px solid rgba(212, 175, 55, 0.4);
+        border-radius: 8px;
+        box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
+        background-color: #111;
+        padding: 4px;
+        transition: 0.3s;
+    }
+
+    .category-box img:hover {
+        border-color: #d4af37;
+        box-shadow: inset 0 0 40px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Strzałki przy krawędziach */
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 50px;
+    }
+
+    .carousel-control-prev {
+        left: 0;
+    }
+
+    .carousel-control-next {
+        right: 0;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        filter: invert(80%) sepia(60%) saturate(300%) hue-rotate(10deg);
+    }
+</style>
+
+<h1 class="mb-4">Witamy w sklepie komputerowym</h1>
+
+<div id="heroCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+
+        <!-- SLIDE 1 -->
+        <div class="carousel-item active">
+            <div class="p-5 text-white rounded-3 hero-box">
+                <div class="container py-5">
+                    <h1 class="display-5 fw-bold" style="color:#d4af37;">Ekskluzywne okazje na Smartwatche</h1>
+                    <p class="col-md-8 fs-4">Najwyższa jakość. Luksusowe produkty. Wyjątkowe ceny.</p>
+                    <a class="btn btn-outline-light btn-lg" href="#">Zobacz ofertę</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="carousel-item">
+            <div class="p-5 text-white rounded-3 hero-box">
+                <div class="container py-5">
+                    <h1 class="display-5 fw-bold" style="color:#d4af37;">Promocje na Laptopy i Komputery</h1>
+                    <p class="col-md-8 fs-4">Topowe modele w przystępnych cenach.</p>
+                    <a class="btn btn-outline-light btn-lg" href="#">Sprawdź</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="carousel-item">
+            <div class="p-5 text-white rounded-3 hero-box">
+                <div class="container py-5">
+                    <h1 class="display-5 fw-bold" style="color:#d4af37;">Nowości w Smartfonach i Tabletach</h1>
+                    <p class="col-md-8 fs-4">Najnowocześniejsze modele w najlepszych cenach.</p>
+                    <a class="btn btn-outline-light btn-lg" href="#">Zobacz nowości</a>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
 </div>
 
-<!-- PROMOCJE -->
-<h2 class="mb-4">🔥 Najlepsze promocje</h2>
+<h2 class="mb-4">Najlepsze promocje</h2>
 <div class="row">
-    {% for p in produkty %}
+    {% for p in promocje %}
     <div class="col-md-3">
-        <div class="card mb-4 shadow-sm">
+        <div class="card mb-4 shadow-sm product-card">
             <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="produkt">
             <div class="card-body">
-                <h5 class="card-title">{{ p.nazwa }}</h5>
-                <p class="card-text text-danger fw-bold">{{ p.cena_jednostkowa }} zł</p>
-                <a href="#" class="btn btn-primary w-100">Zobacz</a>
+                <h5 class="card-title" style="color:#d4af37;">{{ p.nazwa }}</h5>
+                <p class="card-text text-danger fw-bold">{{ p.cena_promocyjna }} zł</p>
+                <a href="#" class="btn btn-outline-light w-100">Zobacz</a>
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
 
-<!-- KATEGORIE -->
-<h2 class="mt-5 mb-4">🛍️ Kategorie</h2>
-<div class="row text-center">
-    <div class="col-4 col-md-2 mb-3">
-        <div class="p-3 border rounded">📱<br>Telefony</div>
-    </div>
-    <div class="col-4 col-md-2 mb-3">
-        <div class="p-3 border rounded">💄<br>Kosmetyki</div>
-    </div>
-    <div class="col-4 col-md-2 mb-3">
-        <div class="p-3 border rounded">💻<br>Elektronika</div>
-    </div>
-    <div class="col-4 col-md-2 mb-3">
-        <div class="p-3 border rounded">🛋️<br>Meble</div>
-    </div>
-    <div class="col-4 col-md-2 mb-3">
-        <div class="p-3 border rounded">⌚<br>Zegarki</div>
-    </div>
-    <div class="col-4 col-md-2 mb-3">
-        <div class="p-3 border rounded">🏠<br>Dom</div>
-    </div>
-</div>
+<h2 class="mt-5 mb-4">Kategorie</h2>
 
-<!-- MARKI -->
-<h2 class="mt-5 mb-4">⭐ Najlepsze marki</h2>
-<div class="row">
-    <div class="col-md-3 mb-3">
-        <div class="p-4 bg-light border rounded text-center">
-            <h4>iPhone</h4>
-            <p>Do 80% taniej</p>
-        </div>
+<div class="row text-center">
+    {% for k in kategorie %}
+    <div class="col-4 mb-4">
+        <a href="{% url 'produkty_kategoria' k.id %}" class="text-decoration-none text-light">
+            <div class="category-box">
+                {% if k.image %}
+                    <img src="{{ k.image.url }}" class="img-fluid mb-3" style="max-height:120px; object-fit:contain;">
+                {% endif %}
+                <h4 style="color:#d4af37;">{{ k.nazwa_kategorii }}</h4>
+            </div>
+        </a>
     </div>
-    <div class="col-md-3 mb-3">
-        <div class="p-4 bg-light border rounded text-center">
-            <h4>realme</h4>
-            <p>Do 80% taniej</p>
-        </div>
-    </div>
-    <div class="col-md-3 mb-3">
-        <div class="p-4 bg-light border rounded text-center">
-            <h4>Samsung</h4>
-            <p>Do 80% taniej</p>
-        </div>
-    </div>
-    <div class="col-md-3 mb-3">
-        <div class="p-4 bg-light border rounded text-center">
-            <h4>Xiaomi</h4>
-            <p>Do 80% taniej</p>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

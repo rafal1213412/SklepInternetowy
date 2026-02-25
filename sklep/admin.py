@@ -19,6 +19,8 @@ from .models import (
     Opinia,
     StatusReklamacji,
     Reklamacja,
+    Podkategoria
+
 )
 MODELE = [
     Klient,
@@ -40,6 +42,7 @@ MODELE = [
     Opinia,
     StatusReklamacji,
     Reklamacja,
+    Podkategoria,
 ]
 
 for model in MODELE:

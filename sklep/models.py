@@ -106,6 +106,7 @@ class Pracownik(models.Model):
 
 class Kategoria(models.Model):
     nazwa_kategorii = models.CharField(max_length=50)
+    image = models.ImageField(upload_to="kategorie/", null=True, blank=True)
 
     class Meta:
         db_table = "kategorie"
@@ -115,13 +116,26 @@ class Kategoria(models.Model):
     def __str__(self):
         return self.nazwa_kategorii
 
+class Podkategoria(models.Model):
+    nazwa = models.CharField(max_length=50)
+    kategoria = models.ForeignKey(Kategoria, on_delete=models.CASCADE, related_name="podkategorie")
+
+    class Meta:
+        db_table = "podkategorie"
+        verbose_name = "Podkategorie"
+        verbose_name_plural = "Podkategorie"
+
+    def __str__(self):
+        return self.nazwa
 
 class Towar(models.Model):
     nazwa = models.CharField(max_length=255)
     producent = models.CharField(max_length=100, blank=True, null=True)
     opis = models.TextField(blank=True, null=True)
     cena_jednostkowa = models.DecimalField(max_digits=10, decimal_places=2)
+    cena_promocyjna = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     kategoria = models.ForeignKey(Kategoria, on_delete=models.SET_NULL, null=True, blank=True)
+    podkategoria = models.ForeignKey(Podkategoria, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         db_table = "towary"
@@ -131,6 +145,11 @@ class Towar(models.Model):
     def __str__(self):
         return self.nazwa
 
+    @property
+    def rabat(self):
+        if self.cena_promocyjna:
+            return self.cena_jednostkowa - self.cena_promocyjna
+        return 0
 
 class Magazyn(models.Model):
     towar = models.ForeignKey(Towar, on_delete=models.CASCADE)

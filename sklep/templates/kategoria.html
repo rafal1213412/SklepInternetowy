@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2 class="mb-4">{{ kategoria.nazwa_kategorii }}</h2>
+
+<div class="row">
+    {% for p in podkategorie %}
+    <div class="col-md-4 mb-3">
+        <a href="{% url 'produkty_podkategoria' p.id %}" class="text-decoration-none text-dark">
+            <div class="p-4 border rounded text-center shadow-sm">
+                <h4>{{ p.nazwa }}</h4>
+            </div>
+        </a>
+    </div>
+    {% empty %}
+        <p>Brak podkategorii w tej kategorii.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}
