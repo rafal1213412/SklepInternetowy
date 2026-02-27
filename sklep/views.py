@@ -5,13 +5,11 @@ from django.shortcuts import get_object_or_404
 
 def sklep_home(request):
     promocje = Towar.objects.filter(cena_promocyjna__isnull=False)
-    kategorie = Kategoria.objects.all()   # ← DODANE!
+    kategorie = Kategoria.objects.all()
     return render(request, "home.html", {
         "promocje": promocje,
-        "kategorie": kategorie,           # ← DODANE!
+        "kategorie": kategorie,
     })
-
-
 
 def produkty_kategoria(request, kategoria_id):
     kategoria = get_object_or_404(Kategoria, id=kategoria_id)
@@ -38,7 +36,6 @@ def podkategoria_view(request, pk):
     podkategoria = get_object_or_404(Podkategoria, id=pk)
     produkty = Towar.objects.filter(podkategoria=podkategoria)
 
-    # FILTROWANIE
     producent = request.GET.get("producent")
     cena_min = request.GET.get("cena_min")
     cena_max = request.GET.get("cena_max")
@@ -53,7 +50,6 @@ def podkategoria_view(request, pk):
     if cena_max:
         produkty = produkty.filter(cena_jednostkowa__lte=cena_max)
 
-    # SORTOWANIE
     if sort == "cena_asc":
         produkty = produkty.order_by("cena_jednostkowa")
     elif sort == "cena_desc":

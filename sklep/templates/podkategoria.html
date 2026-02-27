@@ -3,38 +3,45 @@
 {% block content %}
 
 <h1 class="mb-4">{{ podkategoria.nazwa }}</h1>
+
 <form method="get" class="mb-4 p-3 bg-dark text-light border rounded">
 
     <div class="row">
 
+
         <div class="col-md-3">
-            <label>Producent:</label>
-            <input type="text" name="producent" class="form-control"
+            <label for="producent">Producent:</label>
+            <input type="text" id="producent" name="producent" class="form-control"
                    value="{{ request.GET.producent }}">
         </div>
 
+
         <div class="col-md-3">
-            <label>Cena od:</label>
-            <input type="number" name="cena_min" class="form-control"
+            <label for="cena_min">Cena od:</label>
+            <input type="number" id="cena_min" name="cena_min" class="form-control"
                    value="{{ request.GET.cena_min }}">
         </div>
 
+
         <div class="col-md-3">
-            <label>Cena do:</label>
-            <input type="number" name="cena_max" class="form-control"
+            <label for="cena_max">Cena do:</label>
+            <input type="number" id="cena_max" name="cena_max" class="form-control"
                    value="{{ request.GET.cena_max }}">
         </div>
 
+
         <div class="col-md-3">
-            <label>Sortowanie:</label>
-            <select name="sort" class="form-control">
+            <label for="sort">Sortowanie:</label>
+            <select id="sort" name="sort" class="form-control">
                 <option value="">Brak</option>
+
                 <option value="cena_asc"
-                    {% if request.GET.sort == "cena_asc" %}selected{% endif %}>
+                    {% if request.GET.sort == 'cena_asc' %}selected="selected"{% endif %}>
                     Cena: rosnąco
                 </option>
+
                 <option value="cena_desc"
-                    {% if request.GET.sort == "cena_desc" %}selected{% endif %}>
+                    {% if request.GET.sort == 'cena_desc' %}selected="selected"{% endif %}>
                     Cena: malejąco
                 </option>
             </select>
@@ -53,30 +60,32 @@
     <div class="col-md-3 mb-4">
         <div class="card bg-dark text-light border-secondary">
             <div class="card-body">
+
                 <h5 class="card-title">{{ produkt.nazwa }}</h5>
 
                 <p class="card-text">
                     Cena: {{ produkt.cena_jednostkowa }} zł
                 </p>
 
-                <!-- Przycisk ZOBACZ (rozwijany opis) -->
+                <!-- Przycisk ZOBACZ -->
                 <button class="btn btn-outline-light w-100 mb-2"
                         data-bs-toggle="collapse"
                         data-bs-target="#opis-{{ produkt.id }}">
                     Zobacz
                 </button>
 
-                <!-- Przycisk DO KOSZYKA (bez logiki) -->
+
                 <a href="/koszyk" class="btn btn-outline-light w-100">Do koszyka</a>
 
-                <!-- ROZWIJANY OPIS PRODUKTU -->
+
                 <div id="opis-{{ produkt.id }}" class="collapse mt-3">
-                <p style="white-space: pre-line;">{{ produkt.opis }}</p>
+                    <p style="white-space: pre-line;">{{ produkt.opis }}</p>
                 </div>
 
             </div>
         </div>
     </div>
+
     {% empty %}
     <p>Brak produktów w tej podkategorii.</p>
     {% endfor %}
