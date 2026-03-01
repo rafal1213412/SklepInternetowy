@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Wyniki wyszukiwania dla: "{{ query }}"</h2>
+
+{% if results %}
+    <div class="row">
+        {% for produkt in results %}
+        <div class="col-md-3 mb-4">
+            <div class="card bg-dark text-light border-secondary">
+                <div class="card-body">
+                    <h5 class="card-title">{{ produkt.nazwa }}</h5>
+                    <p class="card-text">{{ produkt.cena_jednostkowa }} zł</p>
+                    <a href="{% url 'produkt_szczegoly' produkt.id %}"
+                       class="btn btn-outline-light w-100">Zobacz</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Brak wyników.</p>
+{% endif %}
+{% endblock %}

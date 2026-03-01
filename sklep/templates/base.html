@@ -71,14 +71,16 @@
         <div class="collapse navbar-collapse" id="nav">
 
             <!-- WYSZUKIWARKA -->
-            <form class="d-flex me-auto ms-3" role="search" style="width: 350px;">
-                <div class="input-group">
-                    <input class="form-control" type="search" placeholder="Szukaj produktu..." aria-label="Search">
-                    <button class="btn btn-outline-light" type="button">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </div>
-            </form>
+            <form class="d-flex me-auto ms-3" role="search" style="width: 350px;"
+      method="get" action="{% url 'search' %}">
+    <div class="input-group">
+        <input class="form-control" type="search" name="q"
+               placeholder="Szukaj produktu..." aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+</form>
 
             <ul class="navbar-nav ms-auto">
 

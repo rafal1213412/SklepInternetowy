@@ -62,3 +62,12 @@ def podkategoria_view(request, pk):
 def produkt_szczegoly(request, produkt_id):
     produkt = get_object_or_404(Towar, id=produkt_id)
     return render(request, "produkt_szczegoly.html", {"produkt": produkt})
+
+def search(request):
+    query = request.GET.get("q", "")
+    results = Towar.objects.filter(nazwa__icontains=query)
+
+    return render(request, "search_result.html", {
+        "query": query,
+        "results": results
+    })
